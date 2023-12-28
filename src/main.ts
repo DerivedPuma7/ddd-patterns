@@ -1,4 +1,4 @@
-import OrderItem from "./entity/OrderItem";
+import OrderItem from "./entity/orderItem";
 import Address from "./entity/address";
 import Customer from "./entity/customer";
 import Order from "./entity/order";

@@ -12,6 +12,6 @@ customer.activate();
 
 // agregado de Order
 // relação: Objeto, Entidade
-let item1 = new OrderItem("1", "item 1", 10);
-let item2 = new OrderItem("2", "item 2", 15);
+let item1 = new OrderItem("1", "item 1", 10, "123", 2);
+let item2 = new OrderItem("2", "item 2", 15, "321", 1);
 let order = new Order("1", "123", [item1, item2]);

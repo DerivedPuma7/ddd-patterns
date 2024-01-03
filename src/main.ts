@@ -1,7 +1,7 @@
-import OrderItem from "./entity/orderItem";
-import Address from "./entity/address";
-import Customer from "./entity/customer";
-import Order from "./entity/order";
+import OrderItem from "./domain/entity/orderItem";
+import Address from "./domain/entity/address";
+import Customer from "./domain/entity/customer";
+import Order from "./domain/entity/order";
 
 // agregado de Customer
 // relação: ID

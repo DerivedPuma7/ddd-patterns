@@ -70,4 +70,18 @@ describe("Product repository test", () => {
         });
         expect(foundProduct).toBeInstanceOf(Product);
     });
+
+    it("should find all products", async () => {
+        const productRepository = new ProductRepository();
+        const product1 = new Product("1", "product 1", 100);
+        const product2 = new Product("2", "product 2", 100);
+        await productRepository.create(product1);
+        await productRepository.create(product2);
+
+        const foundProducts = await productRepository.findAll();
+        const products = [product1, product2];
+
+        expect(products).toEqual(foundProducts);
+        foundProducts.forEach(foundProduct => expect(foundProduct).toBeInstanceOf(Product));
+    });
 });

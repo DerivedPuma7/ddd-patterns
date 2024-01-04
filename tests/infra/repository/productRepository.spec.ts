@@ -1,4 +1,6 @@
-import ProductModel from "../../../src/infrastructure/db/sequelize/model/productModel"
+import ProductModel from "../../../src/infrastructure/db/sequelize/model/productModel";
+import ProductRepository from "../../../src/infrastructure/repository/productRepository";
+import Product from "../../../src/domain/entity/product"
 
 import { Sequelize } from "sequelize-typescript";
 
@@ -21,7 +23,18 @@ describe("Product repository test", () => {
         await sequelize.close();
     });
 
-    it("", () => {
-        
+    it("should create a product", async () => {
+        const productRepository = new ProductRepository();
+        const product = new Product("1", "product 1", 100);
+
+        await productRepository.create(product);
+
+        const productModel = await ProductModel.findOne({ where: { id: "1" } });
+
+        expect(productModel?.toJSON()).toStrictEqual({
+            id: "1",
+            name: "product 1",
+            price: 100
+        });
     });
 });

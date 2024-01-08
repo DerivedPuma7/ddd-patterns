@@ -87,4 +87,24 @@ describe("Customer repository test", () => {
             await customerRepository.find("any fake id")
         }).rejects.toThrow("Customer not found")
     });
+
+    it("should find all customers", async () => {
+        const customerRepository = new CustomerRepository();
+        
+        const customer1 = new Customer("1", "name 1");
+        const address1 = new Address("street 1", 1, "zip 1", "city 1");
+        customer1.Address = address1;
+        const customer2 = new Customer("2", "name 2");
+        const address2 = new Address("street 2", 2, "zip 2", "city 2");
+        customer2.Address = address2;
+
+        await customerRepository.create(customer1);
+        await customerRepository.create(customer2);
+
+        const foundCustomers = await customerRepository.findAll();
+        const customers = [customer1, customer2];
+
+        expect(customers).toEqual(foundCustomers);
+        foundCustomers.forEach(foundCustomer => expect(foundCustomer).toBeInstanceOf(Customer));
+    });
 });

@@ -33,7 +33,6 @@ describe("Customer repository test", () => {
         await customerRepository.create(customer);
 
         const customerModel = await CustomerModel.findOne({ where: { id: "1" } });
-        console.log(customerModel);
 
         expect(customerModel?.toJSON()).toStrictEqual({
             id: customer.id,

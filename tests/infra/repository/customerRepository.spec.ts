@@ -67,4 +67,16 @@ describe("Customer repository test", () => {
             city: address.city,
         });
     });
+
+    it("should find a customer", async () => {
+        const customerRepository = new CustomerRepository();
+        const customer = new Customer("1", "name");
+        const address = new Address("street 1", 1, "zip", "city");
+        customer.Address = address;
+        await customerRepository.create(customer);
+
+        const customerResult = await customerRepository.find(customer.id);
+
+        expect(customer).toStrictEqual(customerResult);
+    });
 });

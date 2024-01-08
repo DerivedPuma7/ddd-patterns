@@ -1,3 +1,4 @@
+import Address from "../../domain/entity/address";
 import Customer from "../../domain/entity/customer";
 import CustomerRepositoryInterface from "../../domain/repository/customer-repository-interface";
 import CustomerModel from "../db/sequelize/model/customerModel";
@@ -36,8 +37,20 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
     }
 
     async find(id: string): Promise<Customer> {
-        throw new Error("Method not implemented.");
+        const customerModel = await CustomerModel.findOne({ where: { id } });
+
+        const customer = new Customer(id, customerModel.name);
+        const address = new Address(
+            customerModel.street,
+            customerModel.number,
+            customerModel.zipcode,
+            customerModel.city
+        );
+        customer.changeAddress(address);
+
+        return customer;
     }
+
     async findAll(): Promise<Customer[]> {
         throw new Error("Method not implemented.");
     }

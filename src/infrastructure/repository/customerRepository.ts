@@ -38,7 +38,6 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
 
     async find(id: string): Promise<Customer> {
         const customerModel = await CustomerModel.findOne({ where: { id } });
-
         const customer = new Customer(id, customerModel.name);
         const address = new Address(
             customerModel.street,
@@ -47,7 +46,6 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
             customerModel.city
         );
         customer.changeAddress(address);
-
         return customer;
     }
 

@@ -3,6 +3,14 @@ import EventHandlerInterface from "./eventHandlerInterface";
 import EventInterface from "./eventInterface";
 
 export default class EventDispatcher implements EventDispatcherInterface {
+    private eventHandlers: {
+        [eventName: string]: EventHandlerInterface[]
+    } = {};
+
+    getEventHandlers(): { [eventName: string]: EventHandlerInterface[] } {
+        return this.eventHandlers;
+    }
+
     notify(event: EventInterface): void {
         throw new Error("Method not implemented.");
     }

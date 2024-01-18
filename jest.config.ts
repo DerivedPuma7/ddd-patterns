@@ -12,6 +12,7 @@ const config: Config = {
   clearMocks: true,
   coverageProvider: "v8",
   roots: [
+    "<rootDir>/src",
     "<rootDir>/tests"
   ],
 };

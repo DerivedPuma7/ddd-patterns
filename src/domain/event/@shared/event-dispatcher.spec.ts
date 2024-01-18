@@ -18,4 +18,15 @@ describe("Domain events tests", () => {
         expect(handlers["ProductCreatedEvent"].length).toBe(1);
         expect(handlers["ProductCreatedEvent"][0]).toMatchObject(eventHandler);
     });
+
+    it("should unregister an event handler", () => {
+        const eventHandler = new SendEmailWhenProductIsCreatedHandler();
+        sut.register("ProductCreatedEvent", eventHandler);
+
+        sut.unregister("ProductCreatedEvent", eventHandler);
+
+        const handlers = sut.getEventHandlers();
+        expect(handlers["ProductCreatedEvent"]).toBeDefined();
+        expect(handlers["ProductCreatedEvent"].length).toBe(0);
+    });
 });

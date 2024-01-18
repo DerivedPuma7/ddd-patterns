@@ -2,15 +2,18 @@ import SendEmailWhenProductIsCreatedHandler from "../product/handler/sendEmailWh
 import EventDispatcher from "./eventDispatcher";
 
 describe("Domain events tests", () => {
+    let sut: EventDispatcher;
+
+    beforeAll(() => {
+        sut = new EventDispatcher();
+    });
+
     it("should register an event handler", () => {
-        const eventDispatcher = new EventDispatcher();
         const eventHandler = new SendEmailWhenProductIsCreatedHandler();
 
-        eventDispatcher.register("ProductCreatedEvent", eventHandler);
+        sut.register("ProductCreatedEvent", eventHandler);
 
-        const handlers = eventDispatcher.getEventHandlers();
-        expect(handlers["ProductCreatedEvent"]).toBeDefined();
-        expect(handlers["ProductCreatedEvent"].length).toBe(1);
-        expect(handlers["ProductCreatedEvent"][0]).toMatchObject(eventHandler);
+        expect(sut.getEventHandlers).toHaveBeenCalledWith("ProductCreatedEvent", eventHandler);
+        expect(sut.getEventHandlers).toHaveBeenCalledTimes(1);
     });
 });

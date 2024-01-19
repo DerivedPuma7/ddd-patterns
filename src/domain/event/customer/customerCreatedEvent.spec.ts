@@ -20,19 +20,3 @@ describe("Customer created event tests", () => {
 		expect(eventHandler2Spy).toHaveBeenCalledTimes(1);
     });
 });
-
-
-// private handleChangeAddressEvent() {
-//     const eventDispatcher = new EventDispatcher();
-//     const handler1 = new EnviaConsoleLog1Handler();
-//     const handler2 = new EnviaConsoleLog2Handler();
-    
-//     const event = new CustomerAddressChangedEvent({ 
-//         id: this._id,
-//         name: this._name,
-//         address: this._address
-//     });
-
-//     eventDispatcher.register("CustomerAddressChangedEvent", handler);
-//     eventDispatcher.notify(event);
-// }

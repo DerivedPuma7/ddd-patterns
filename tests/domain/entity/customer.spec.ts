@@ -84,16 +84,4 @@ describe("Customer unit tests", () => {
 
         expect(customer.Address).toMatchObject(address);
     });
-
-    it("should trigger event when customer changes its address", () => {
-        const customer = new Customer("1", "Gustavo");
-        const address = new Address("fake street", 123, "fake zip", "fake city");
-        const handler = new EnviaConsoleLogHandler();
-        const eventHandlerSpy = jest.spyOn(handler, "handle");
-
-        customer.changeAddress(address);
-
-        expect(eventHandlerSpy).toHaveBeenCalled();
-        // expect(eventHandlerSpy).toHaveBeenCalledTimes(1);
-    });
 });

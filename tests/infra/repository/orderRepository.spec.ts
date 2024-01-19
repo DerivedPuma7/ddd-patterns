@@ -17,8 +17,15 @@ import { Sequelize } from "sequelize-typescript";
 
 describe("Order repository test", () => {
     let sequelize: Sequelize;
+    let customerRepository: CustomerRepository;
+    let productRepository: ProductRepository;
+    let orderRepository: OrderRepository;
 
     beforeEach(async () => {
+        customerRepository = new CustomerRepository();
+        productRepository = new ProductRepository();
+        orderRepository = new OrderRepository();
+
         sequelize = new Sequelize({
             dialect: 'sqlite',
             storage: ':memory:',
@@ -34,23 +41,29 @@ describe("Order repository test", () => {
         await sequelize.close();
     });
 
-    it('should create a new order', async () => {
-        const customerRepository = new CustomerRepository();
-        const customer_id = "1234";
-        const customer = new Customer(customer_id, "customer 1");
+    const createDefaultCustomer = () => {
+        const customer = new Customer('1234', "customer 1");
         const address = new Address("street 1", 1, "zip 1", "city 1");
         customer.changeAddress(address);
+        return customer;
+    }
+
+    const createDefaultProduct = () => {
+        return new Product('1', "product 1", 10);
+    }
+
+    it('should create a new order', async () => {
+        const customer = createDefaultCustomer();
+        const customer_id = customer.id;
         await customerRepository.create(customer);
 
-        const productRepository = new ProductRepository();
-        const product = new Product('1', "product 1", 10);
+        const product = createDefaultProduct();
         await productRepository.create(product);
 
         const orderItem = new OrderItem("1", product.name, product.price, product.id, 2);
         const order_id = "123";
         const order = new Order(order_id, customer_id, [orderItem]);
 
-        const orderRepository = new OrderRepository();
         await orderRepository.create(order);
 
         const orderModel = await OrderModel.findOne({

@@ -1,5 +1,6 @@
 import Address from "../../../src/domain/entity/address";
 import Customer from "../../../src/domain/entity/customer";
+import EnviaConsoleLogHandler from "../../../src/domain/event/customer/handler/enviaConsoleLogHandler";
 
 describe("Customer unit tests", () => {
     it("should throw an error if id is not provided", () => {
@@ -73,5 +74,14 @@ describe("Customer unit tests", () => {
 
         customer.addRewardPoints(100);
         expect(customer.rewardPoints).toBe(110);
+    });
+
+    it("should change customer's address", () => {
+        const customer = new Customer("1", "Gustavo");
+        const address = new Address("fake street", 123, "fake zip", "fake city");
+
+        customer.changeAddress(address);
+
+        expect(customer.Address).toMatchObject(address);
     });
 });

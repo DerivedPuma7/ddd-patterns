@@ -4,14 +4,14 @@ import Product from "../../../src/domain/product/entity/product";
 import OrderItem from "../../../src/domain/checkout/entity/orderItem";
 import Order from "../../../src/domain/checkout/entity/order";
 
-import CustomerModel from "../../../src/infrastructure/db/sequelize/model/customerModel";
-import OrderItemModel from "../../../src/infrastructure/db/sequelize/model/orderItemModel";
-import OrderModel from "../../../src/infrastructure/db/sequelize/model/orderModel";
-import ProductModel from "../../../src/infrastructure/db/sequelize/model/productModel";
-import CustomerRepository from "../../../src/infrastructure/repository/customerRepository";
+import CustomerModel from "../../../src/infrastructure/customer/repository/sequelize/customerModel";
+import OrderItemModel from "../../../src/infrastructure/checkout/repository/sequelize/orderItemModel";
+import OrderModel from "../../../src/infrastructure/checkout/repository/sequelize/orderModel";
+import ProductModel from "../../../src/infrastructure/product/repository/sequelize/productModel";
+import CustomerRepository from "../../../src/infrastructure/customer/repository/sequelize/customerRepository";
 
-import ProductRepository from "../../../src/infrastructure/repository/productRepository";
-import OrderRepository from "../../../src/infrastructure/repository/orderRepository";
+import ProductRepository from "../../../src/infrastructure/product/repository/sequelize/productRepository";
+import OrderRepository from "../../../src/infrastructure/checkout/repository/sequelize/orderRepository";
 
 import { Sequelize } from "sequelize-typescript";
 

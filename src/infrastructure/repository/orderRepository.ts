@@ -36,7 +36,6 @@ export default class OrderRepository implements OrderRepositoryInterface {
 		}
 
 		for (const updatedItem of updatedItems) {
-            console.log('updatedItem', updatedItem);
             
             await OrderItemModel.create({
                 id: updatedItem.id,

@@ -88,6 +88,31 @@ describe("Order repository test", () => {
         });
     });
 
+    it("should update an order", async () => {
+		const customer = createDefaultCustomer();
+		const product1 = new Product("1", "fake product 1", 10);
+		const product2 = new Product("2", "fake product 2", 20);
+		const orderItem1 = new OrderItem("1", "fake order item 1", product1.price, product1.id, 1);
+		const orderItem2 = new OrderItem("2", "fake order item 2", product2.price, product2.id, 2);
+		const order = new Order("1", customer.id, [orderItem1]);
+
+		await customerRepository.create(customer);
+		await productRepository.create(product1);
+		await productRepository.create(product2);
+		await orderRepository.create(order);
+		order.addItem(orderItem2);
+
+		await orderRepository.update(order);
+
+		const orderModel = await OrderModel.findOne({
+			where: { id: order.id },
+			include: ["items"],
+		});
+        
+		expect(orderModel?.items.length).toBe(2);
+		expect(orderModel?.total).toBe(order.total());
+	});
+
     it("should find an order", async () => {
 		const customer = createDefaultCustomer();
 		const product = createDefaultProduct();

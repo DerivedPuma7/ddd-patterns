@@ -1,8 +1,8 @@
-import Address from "../../../src/domain/entity/address";
-import Customer from "../../../src/domain/entity/customer";
-import Product from "../../../src/domain/entity/product";
-import OrderItem from "../../../src/domain/entity/orderItem";
-import Order from "../../../src/domain/entity/order";
+import Address from "../../../src/domain/customer/value-object/address";
+import Customer from "../../../src/domain/customer/entity/customer";
+import Product from "../../../src/domain/product/entity/product";
+import OrderItem from "../../../src/domain/checkout/entity/orderItem";
+import Order from "../../../src/domain/checkout/entity/order";
 
 import CustomerModel from "../../../src/infrastructure/db/sequelize/model/customerModel";
 import OrderItemModel from "../../../src/infrastructure/db/sequelize/model/orderItemModel";

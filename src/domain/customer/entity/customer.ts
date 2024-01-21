@@ -1,6 +1,3 @@
-import EventDispatcher from "../../@shared/event/eventDispatcher";
-import CustomerAddressChangedEvent from "../event/customerAddressChangedEvent";
-import EnviaConsoleLogHandler from "../event/handler/enviaConsoleLogHandler";
 import Address from "../value-object/address";
 
 

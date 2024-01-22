@@ -42,11 +42,20 @@ export default class Order {
         return this._items;
     }
 
+    get totalPrice(): number {
+        return this._total;
+    }
+
     total(): number {
         return this._items.reduce((acc, item) => acc + item.total(), 0);
     }
 
     addItem(orderItem: OrderItem): void {
         this._items.push(orderItem);
+        this.updateTotal();
+    }
+
+    updateTotal(): void {
+        this._total = this.total();
     }
 }

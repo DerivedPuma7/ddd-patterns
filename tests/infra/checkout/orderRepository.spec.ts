@@ -111,6 +111,7 @@ describe("Order repository test", () => {
         
 		expect(orderModel?.items.length).toBe(2);
 		expect(orderModel?.total).toBe(order.total());
+        expect(order.totalPrice).toBe(50);
 	});
 
     it("should find an order", async () => {
